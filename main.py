@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-import os
-from dotenv import load_dotenv
 
 app = FastAPI()
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
+from auth_routes import auth_router
+from order_routes import order_router
+
+app.include_router(auth_router)
+app.include_router(order_router)
+
